@@ -1,0 +1,8 @@
+apidoc
+kayahr
+nodir
+Reimer
+rimraf
+tmpl
+typedoc
+vitest
