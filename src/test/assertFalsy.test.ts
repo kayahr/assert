@@ -1,8 +1,8 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
 
-import { assertFalsy } from "../main/assertFalsy.js";
-import { AssertionError } from "../main/AssertionError.js";
+import { assertFalsy } from "../main/assertFalsy.ts";
+import { AssertionError } from "../main/AssertionError.ts";
 
 describe("assertFalsy", () => {
     it("does not throw when value is falsy", () => {

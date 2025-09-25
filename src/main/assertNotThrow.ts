@@ -3,8 +3,8 @@
  * See LICENSE.md for licensing information.
  */
 
-import { AssertionError } from "./AssertionError.js";
-import { toString } from "./utils.js";
+import { AssertionError } from "./AssertionError.ts";
+import { toString } from "./utils.ts";
 
 /**
  * Asserts that given asynchronous function does not reject the returned promise.
@@ -41,11 +41,17 @@ export function assertNotThrow(fn: () => unknown, error?: unknown, reason?: stri
     let result: unknown;
     try {
         result = fn();
-    } catch (e) {
-        checkThrow(e);
+    } catch (error) {
+        checkThrow(error);
         return;
     }
     if (result instanceof Promise) {
-        return result.catch(checkThrow).then(() => {});
+        return (async () => {
+            try {
+                await result;
+            } catch (error) {
+                checkThrow(error);
+            }
+        })();
     }
 }

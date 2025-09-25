@@ -1,8 +1,8 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
 
-import { AssertionError } from "../main/AssertionError.js";
-import { assertTimeout } from "../main/assertTimeout.js";
+import { AssertionError } from "../main/AssertionError.ts";
+import { assertTimeout } from "../main/assertTimeout.ts";
 
 function sleepSync(ms: number): void {
     const start = performance.now();
@@ -17,7 +17,7 @@ function sleepAsync(ms: number): Promise<void> {
 
 describe("assertTimeout", () => {
     it("does not throw when synchronous function finishes in time", () => {
-        assert.doesNotThrow(() => assertTimeout(10000, () => {}));
+        assert.doesNotThrow(() => assertTimeout(10_000, () => {}));
     });
     it("does throw when synchronous function finishes in time", () => {
         assert.throws(() => assertTimeout(2, () => { sleepSync(10); }), new AssertionError(`Execution exceeded timeout of 2 ms by 8 ms`));

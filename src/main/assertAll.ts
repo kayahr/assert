@@ -3,7 +3,7 @@
  * See LICENSE.md for licensing information.
  */
 
-import { AssertionError } from "./AssertionError.js";
+import { AssertionError } from "./AssertionError.ts";
 
 export function assertAll(...funcs: Array<() => undefined | void>): void;
 export function assertAll(...funcs: Array<() => undefined | void | Promise<undefined | void>>): Promise<void>;
@@ -43,8 +43,8 @@ export function assertAll(...funcs: Array<() => undefined | void | Promise<undef
             if (result instanceof Promise) {
                 promises.push(result);
             }
-        } catch (e) {
-            errors.push(e);
+        } catch (error) {
+            errors.push(error);
         }
     }
     const reportErrors = (): void => {
@@ -55,10 +55,11 @@ export function assertAll(...funcs: Array<() => undefined | void | Promise<undef
         }
     };
     if (promises.length > 0) {
-        return Promise.allSettled(promises).then(result => {
+        return (async () => {
+            const result = await Promise.allSettled(promises);
             errors.push(...result.filter((result): result is PromiseRejectedResult => result.status === "rejected").map(result => result.reason as unknown));
             reportErrors();
-        });
+        })();
     } else {
         reportErrors();
     }

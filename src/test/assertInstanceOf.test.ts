@@ -6,12 +6,14 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
 
-import { assertInstanceOf } from "../main/assertInstanceOf.js";
-import { AssertionError } from "../main/AssertionError.js";
+import { assertInstanceOf } from "../main/assertInstanceOf.ts";
+import { AssertionError } from "../main/AssertionError.ts";
 
-class ClassA {}
-class ClassB {}
-class ClassC extends ClassB {}
+class ClassA { public a = 1; }
+class ClassB { public b = 2; }
+class ClassC extends ClassB {
+    public c = 3;
+}
 
 describe("assertInstanceOf", () => {
     it("does not throw when value is instance of given class", () => {
@@ -27,8 +29,8 @@ describe("assertInstanceOf", () => {
     });
     it("does throw when value is not instance of given class", () => {
         assert.throws(() => assertInstanceOf({}, Array), new AssertionError("Expected <{}> to be an instance of <Array>"));
-        assert.throws(() => assertInstanceOf(new ClassA(), ClassB), new AssertionError("Expected <ClassA({})> to be an instance of <ClassB>"));
-        assert.throws(() => assertInstanceOf(new ClassB(), ClassC), new AssertionError("Expected <ClassB({})> to be an instance of <ClassC>"));
+        assert.throws(() => assertInstanceOf(new ClassA(), ClassB), new AssertionError("Expected <ClassA({ a: 1 })> to be an instance of <ClassB>"));
+        assert.throws(() => assertInstanceOf(new ClassB(), ClassC), new AssertionError("Expected <ClassB({ b: 2 })> to be an instance of <ClassC>"));
     });
     it("does throw with additional reason", () => {
         assert.throws(() => assertInstanceOf({}, Array, "Reason"), new AssertionError("Reason: Expected <{}> to be an instance of <Array>"));

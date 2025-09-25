@@ -3,8 +3,8 @@
  * See LICENSE.md for licensing information.
  */
 
-import { AssertionError } from "./AssertionError.js";
-import { type ComparablePrimitive, toString } from "./utils.js";
+import { AssertionError } from "./AssertionError.ts";
+import { type ComparablePrimitive, toString } from "./utils.ts";
 
 /**
  * Asserts that actual value is greater than or equal to the expected value.

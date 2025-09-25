@@ -1,8 +1,8 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
 
-import { AssertionError } from "../main/AssertionError.js";
-import { assertMatch } from "../main/assertMatch.js";
+import { AssertionError } from "../main/AssertionError.ts";
+import { assertMatch } from "../main/assertMatch.ts";
 
 describe("assertMatch", () => {
     it("does not throw when value matches regexp", () => {

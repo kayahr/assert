@@ -1,8 +1,8 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
 
-import { assertContain } from "../main/assertContain.js";
-import { AssertionError } from "../main/AssertionError.js";
+import { assertContain } from "../main/assertContain.ts";
+import { AssertionError } from "../main/AssertionError.ts";
 
 describe("assertContain", () => {
     it("does not throw when string contains sub string", () => {

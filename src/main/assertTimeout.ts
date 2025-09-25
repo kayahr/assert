@@ -3,7 +3,7 @@
  * See LICENSE.md for licensing information.
  */
 
-import { AssertionError } from "./AssertionError.js";
+import { AssertionError } from "./AssertionError.ts";
 
 export function assertTimeout<T>(milliseconds: number, func: () => Promise<T>, reason?: string): Promise<T>;
 export function assertTimeout<T>(milliseconds: number, func: () => T, reason?: string): T;
@@ -26,10 +26,11 @@ export function assertTimeout<T>(milliseconds: number, func: () => T | Promise<T
             const timer = setTimeout(() => {
                 reject(new AssertionError(`Execution timed out after ${milliseconds} ms`, { reason }));
             }, milliseconds);
-            void result.then(value => {
+            return (async () => {
+                const value = await result;
                 clearTimeout(timer);
                 resolve(value);
-            }, reject);
+            })();
         });
     } else {
         const end = performance.now();

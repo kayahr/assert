@@ -3,8 +3,8 @@
  * See LICENSE.md for licensing information.
  */
 
-import { AssertionError } from "./AssertionError.js";
-import { toString } from "./utils.js";
+import { AssertionError } from "./AssertionError.ts";
+import { toString } from "./utils.ts";
 
 export function assertContain(container: string, item: string, reason?: string): void;
 export function assertContain<T>(container: T[], item: T, reason?: string): void;

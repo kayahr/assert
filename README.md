@@ -1,5 +1,4 @@
-Assert
-======
+# Assert
 
 [GitHub] | [NPM] | [API Doc]
 
@@ -10,8 +9,7 @@ When an assertion fails an [AssertionError] is thrown with detailed information 
 The assert library works in Node.js and browsers.
 
 
-Usage
------
+## Usage
 
 Install the library in your project (add `-D` parameter when only needed as dev dependency for unit tests):
 

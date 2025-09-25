@@ -3,8 +3,8 @@
  * See LICENSE.md for licensing information.
  */
 
-import { AssertionError } from "./AssertionError.js";
-import { toString } from "./utils.js";
+import { AssertionError } from "./AssertionError.ts";
+import { toString } from "./utils.ts";
 
 /**
  * Asserts that given asynchronous function does reject the returned promise.
@@ -31,6 +31,10 @@ export function assertThrow(fn: () => unknown, error?: unknown, reason?: string)
  * Asserts that given function (synchronous or asynchronous) does throw an exception. When function is asynchronous then `assertThrow` returns a Promise
  * which must be awaited in order to complete the assertion.
  *
+ * @param fn     - function to test
+ * @param error  - The error to check for.
+ * @param reason - Optional reason added to exception message when assertion fails.
+ *
  * Examples:
  *
  * ```typescript
@@ -52,8 +56,8 @@ export function assertThrow(fn: () => unknown, error?: unknown, reason?: string)
     let result: unknown;
     try {
         result = fn();
-    } catch (e) {
-        return checkThrow(e);
+    } catch (error) {
+        return checkThrow(error);
     }
     if (result instanceof Promise) {
         return result.then(didNotThrow, checkThrow);

@@ -1,8 +1,8 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
 
-import { AssertionError } from "../main/AssertionError.js";
-import { assertNotNaN } from "../main/assertNotNaN.js";
+import { AssertionError } from "../main/AssertionError.ts";
+import { assertNotNaN } from "../main/assertNotNaN.ts";
 
 describe("assertNotNaN", () => {
     it("does not throw when value is not NaN", () => {

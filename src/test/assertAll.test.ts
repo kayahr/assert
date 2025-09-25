@@ -1,8 +1,8 @@
 import assert, { fail } from "node:assert";
 import { describe, it, mock } from "node:test";
 
-import { assertAll } from "../main/assertAll.js";
-import { AssertionError } from "../main/AssertionError.js";
+import { assertAll } from "../main/assertAll.ts";
+import { AssertionError } from "../main/AssertionError.ts";
 
 describe("assertAll", () => {
     it("executes all synchronous function evens when one fails", () => {
@@ -19,7 +19,7 @@ describe("assertAll", () => {
         const error = new Error("test");
         const func1 = mock.fn();
         const func2 = mock.fn(() => { throw error; });
-        const func3 = mock.fn(() => Promise.resolve());
+        const func3 = mock.fn(async () => {});
         await assert.rejects(() => assertAll(func1, func2, func3), error);
         assert(func1.mock.callCount() === 1);
         assert(func2.mock.callCount() === 1);
@@ -28,8 +28,8 @@ describe("assertAll", () => {
     it("executes all synchronous/asynchronous functions even when an asynchronous one fails", async () => {
         const error = new Error("test");
         const func1 = mock.fn();
-        const func2 = mock.fn(() => Promise.reject(error));
-        const func3 = mock.fn(() => Promise.resolve());
+        const func2 = mock.fn(async () => { throw error; });
+        const func3 = mock.fn(async () => {});
         await assert.rejects(() => assertAll(func1, func2, func3), error);
         assert(func1.mock.callCount() === 1);
         assert(func2.mock.callCount() === 1);
@@ -39,7 +39,7 @@ describe("assertAll", () => {
         const error1 = new Error("test1");
         const error2 = new Error("test2");
         const func1 = mock.fn();
-        const func2 = mock.fn(() => Promise.reject(error1));
+        const func2 = mock.fn(async () => { throw error1; });
         const func3 = mock.fn(() => { throw error2; });
         const func4 = mock.fn();
         try {
@@ -47,10 +47,10 @@ describe("assertAll", () => {
             assert(promise instanceof Promise);
             await promise;
             fail("Must throw exception");
-        } catch (e) {
-            assert(e instanceof AssertionError);
-            assert(e.message === "Multiple failures (2)");
-            assert.deepStrictEqual(e.cause, [ error2, error1 ]);
+        } catch (error) {
+            assert(error instanceof AssertionError);
+            assert(error.message === "Multiple failures (2)");
+            assert.deepStrictEqual(error.cause, [ error2, error1 ]);
         }
         assert(func1.mock.callCount() === 1);
         assert(func2.mock.callCount() === 1);

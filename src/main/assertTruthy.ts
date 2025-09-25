@@ -3,8 +3,8 @@
  * See LICENSE.md for licensing information.
  */
 
-import { AssertionError } from "./AssertionError.js";
-import { toString } from "./utils.js";
+import { AssertionError } from "./AssertionError.ts";
+import { toString } from "./utils.ts";
 
 /**
  * Asserts that given value is truthy.

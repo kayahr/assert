@@ -1,12 +1,23 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
 
-import { assertCloseTo } from "../main/assertCloseTo.js";
-import { AssertionError } from "../main/AssertionError.js";
-import { toString } from "../main/utils.js";
+import { assertCloseTo } from "../main/assertCloseTo.ts";
+import { AssertionError } from "../main/AssertionError.ts";
+import { toString } from "../main/utils.ts";
 
-class A { public constructor(public value: number) {} }
-class B { public constructor(public value: number) {} }
+class A {
+    public value: number;
+    public constructor(value: number) {
+        this.value = value;
+    }
+}
+
+class B {
+    public value: number;
+    public constructor(value: number) {
+        this.value = value;
+    }
+}
 
 const values = [ null, 0, 1, -1, Infinity, -Infinity, "", "a", true, false, new Date(), new A(1), new B(1), new A(2) ];
 
@@ -60,7 +71,10 @@ describe("assertCloseTo", () => {
     });
     it("does not throw when actual value has equals methods which returns true", () => {
         class A {
-            public constructor(public value: number) {}
+            public value: number;
+            public constructor(value: number) {
+                this.value = value;
+            }
             public equals(other: A): boolean {
                 return this.equals === other.equals && this.value === other.value;
             }
@@ -70,7 +84,10 @@ describe("assertCloseTo", () => {
     });
     it("does throw when actual value has equals method which returns false", () => {
         class A {
-            public constructor(public value: number) {}
+            public value: number;
+            public constructor(value: number) {
+                this.value = value;
+            }
             public equals(other: A): boolean {
                 return this.equals === other.equals && this.value === other.value;
             }

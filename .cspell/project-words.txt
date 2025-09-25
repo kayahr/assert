@@ -1,6 +1,8 @@
 apidoc
 kayahr
 nodir
+ntest
+oxlint
 Reimer
 rimraf
 tmpl

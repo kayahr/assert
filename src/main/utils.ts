@@ -26,7 +26,7 @@ function toStringRecursive(value: unknown, seen: Set<object>): string {
     if (type === "bigint") {
         return `${value}n`;
     }
-    if (value instanceof Function && value.name !== "") {
+    if (typeof value === "function" && value.name !== "") {
         return value.name;
     }
     if (value instanceof Object) {
@@ -34,7 +34,7 @@ function toStringRecursive(value: unknown, seen: Set<object>): string {
             return `<circular ref: ${value.constructor.name}>`;
         }
         seen.add(value);
-        if (value instanceof Array) {
+        if (Array.isArray(value)) {
             const values = Object.values(value).map(value => toStringRecursive(value, seen));
             return values.length === 0 ? "[]" : `[ ${values.join(", ")} ]`;
         }
@@ -73,7 +73,7 @@ export interface EqualsOptions {
     checkEquatable?: boolean;
 }
 
-export function deepEquals<T, S>(a: T, b: T | S, options: EqualsOptions, seen = new WeakMap<Object, object>()):
+export function deepEquals<T, S>(a: T, b: T | S, options: EqualsOptions, seen = new WeakMap<object, object>()):
         a is T & S {
     if (a === b || (a == null && b == null)) {
         // Values are the same (or both or null/undefined which is also considered equal)

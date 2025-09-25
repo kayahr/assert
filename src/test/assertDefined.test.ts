@@ -1,8 +1,8 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
 
-import { assertDefined } from "../main/assertDefined.js";
-import { AssertionError } from "../main/AssertionError.js";
+import { assertDefined } from "../main/assertDefined.ts";
+import { AssertionError } from "../main/AssertionError.ts";
 
 describe("assertDefined", () => {
     it("does not throw when value is defined", () => {

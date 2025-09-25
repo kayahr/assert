@@ -1,8 +1,8 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
 
-import { AssertionError } from "../main/AssertionError.js";
-import { assertNull } from "../main/assertNull.js";
+import { AssertionError } from "../main/AssertionError.ts";
+import { assertNull } from "../main/assertNull.ts";
 
 describe("assertNull", () => {
     it("does throw when value is not null", () => {

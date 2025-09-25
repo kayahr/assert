@@ -3,8 +3,8 @@
  * See LICENSE.md for licensing information.
  */
 
-import { AssertionError } from "./AssertionError.js";
-import { type Class, toString } from "./utils.js";
+import { AssertionError } from "./AssertionError.ts";
+import { type Class, toString } from "./utils.ts";
 
 /**
  * Asserts that given value is not an instance of the given class.

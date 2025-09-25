@@ -1,8 +1,8 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
 
-import { AssertionError } from "../main/AssertionError.js";
-import { assertSame } from "../main/assertSame.js";
+import { AssertionError } from "../main/AssertionError.ts";
+import { assertSame } from "../main/assertSame.ts";
 
 describe("assertSame", () => {
     it("does throw when values are not same", () => {

@@ -1,8 +1,8 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
 
-import { AssertionError } from "../main/AssertionError.js";
-import { assertLessThanOrEqual } from "../main/assertLessThanOrEqual.js";
+import { AssertionError } from "../main/AssertionError.ts";
+import { assertLessThanOrEqual } from "../main/assertLessThanOrEqual.ts";
 
 describe("assertLessThanOrEqual", () => {
     it("does not throw when actual value is less than or equal to expected value", () => {

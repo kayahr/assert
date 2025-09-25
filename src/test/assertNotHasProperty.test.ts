@@ -1,8 +1,8 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
 
-import { AssertionError } from "../main/AssertionError.js";
-import { assertNotHasProperty } from "../main/assertNotHasProperty.js";
+import { AssertionError } from "../main/AssertionError.ts";
+import { assertNotHasProperty } from "../main/assertNotHasProperty.ts";
 
 const b = Symbol.for("b");
 const obj = {

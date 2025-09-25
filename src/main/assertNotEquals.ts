@@ -3,9 +3,8 @@
  * See LICENSE.md for licensing information.
  */
 
-import { AssertionError } from "./AssertionError.js";
-import { equals } from "./utils.js";
-import { toString } from "./utils.js";
+import { AssertionError } from "./AssertionError.ts";
+import { equals, toString } from "./utils.ts";
 
 /**
  * Asserts that the two values are not recursively equal. Arrays are considered equal when the size and their items (and positions) are equal. Objects are

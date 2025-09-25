@@ -3,8 +3,8 @@
  * See LICENSE.md for licensing information.
  */
 
-import { AssertionError } from "./AssertionError.js";
-import { equals, toString } from "./utils.js";
+import { AssertionError } from "./AssertionError.ts";
+import { equals, toString } from "./utils.ts";
 
 /**
  * Asserts that the two values are recursively equal but the difference to {@link assertEquals} is that numbers are considered to be equal when they are
@@ -25,8 +25,8 @@ import { equals, toString } from "./utils.js";
  *
  * @throws {@link AssertionError} when values are not close enough.
  *
- * @typeParam Actual   - The type of the actual value.
- * @typeParam Expected - The type of the expected value.
+ * @template Actual   - The type of the actual value.
+ * @template Expected - The type of the expected value.
  */
 export function assertCloseTo<Actual, Expected>(actual: Actual, expected: Expected, precision = 2, reason?: string): asserts actual is Actual & Expected {
     if (!equals(actual, expected, { precision })) {
