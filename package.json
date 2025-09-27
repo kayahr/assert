@@ -41,11 +41,14 @@
     },
     "devDependencies": {
         "@kayahr/cspell": "9.2.1-bundle.2",
-        "@kayahr/npm-utils": "0.0.2",
+        "@kayahr/npm-utils": "0.0.6",
         "@kayahr/ntest": "1.0.0",
-        "@kayahr/oxlint-config": "1.0.2",
+        "@kayahr/oxlint-config": "1.0.4",
         "@kayahr/typedoc": "0.28.13-bundle.3",
         "@types/node": "24.5.2",
         "typescript": "5.9.2"
+    },
+    "dependencies": {
+        "esbuild": "^0.25.10"
     }
 }
