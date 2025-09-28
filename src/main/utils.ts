@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2024 Klaus Reimer, k@ailis.de
- * See LICENSE.md for licensing information.
+ * Copyright (c) 2024-2025 Klaus Reimer
+ * SPDX-License-Identifier: MIT
  */
 
 /**
@@ -56,8 +56,8 @@ export function toString(value: unknown): string {
 }
 
 /*
- * Copyright (c) 2024 Klaus Reimer, k@ailis.de
- * See LICENSE.md for licensing information.
+ * Copyright (c) 2024-2025 Klaus Reimer
+ * SPDX-License-Identifier: MIT
  */
 
 interface Equatable {

@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2024 Klaus Reimer, k@ailis.de
- * See LICENSE.md for licensing information.
+ * Copyright (c) 2024-2025 Klaus Reimer
+ * SPDX-License-Identifier: MIT
  */
 
 import { AssertionError } from "./AssertionError.ts";

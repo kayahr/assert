@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2024-2025 Klaus Reimer
+ * SPDX-License-Identifier: MIT
+ */
+
 import { describe, it } from "node:test";
 import { AssertionError } from "../main/AssertionError.ts";
 import assert from "node:assert";

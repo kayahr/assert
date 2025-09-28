@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2024-2025 Klaus Reimer
+ * SPDX-License-Identifier: MIT
+ */
+
 import assert from "node:assert";
 import { describe, it } from "node:test";
 
