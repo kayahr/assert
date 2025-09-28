@@ -47,8 +47,5 @@
         "@kayahr/typedoc": "0.28.13-bundle.3",
         "@types/node": "24.5.2",
         "typescript": "5.9.2"
-    },
-    "dependencies": {
-        "esbuild": "^0.25.10"
     }
 }
