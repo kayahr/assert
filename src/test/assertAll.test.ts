@@ -1,4 +1,4 @@
-import assert, { fail } from "node:assert";
+import assert from "node:assert";
 import { describe, it, mock } from "node:test";
 
 import { assertAll } from "../main/assertAll.ts";
@@ -42,19 +42,18 @@ describe("assertAll", () => {
         const func2 = mock.fn(async () => { throw error1; });
         const func3 = mock.fn(() => { throw error2; });
         const func4 = mock.fn();
-        try {
-            const promise = assertAll(func1, func2, func3, func4);
-            assert(promise instanceof Promise);
-            await promise;
-            fail("Must throw exception");
-        } catch (error) {
+        const promise = assertAll(func1, func2, func3, func4);
+        assert(promise instanceof Promise);
+        promise.catch((error: unknown) => {
             assert(error instanceof AssertionError);
             assert(error.message === "Multiple failures (2)");
             assert.deepStrictEqual(error.cause, [ error2, error1 ]);
-        }
-        assert(func1.mock.callCount() === 1);
-        assert(func2.mock.callCount() === 1);
-        assert(func3.mock.callCount() === 1);
-        assert(func4.mock.callCount() === 1);
+            assert(func1.mock.callCount() === 1);
+            assert(func2.mock.callCount() === 1);
+            assert(func3.mock.callCount() === 1);
+            assert(func4.mock.callCount() === 1);
+        });
+        await assert.rejects(promise);
+
     });
 });

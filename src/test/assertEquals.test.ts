@@ -4,6 +4,7 @@ import { describe, it } from "node:test";
 import { assertEquals } from "../main/assertEquals.ts";
 import { AssertionError } from "../main/AssertionError.ts";
 import { toString } from "../main/utils.ts";
+import { assertInstanceOf } from "../main/assertInstanceOf.ts";
 
 class A {
     public value: number;
@@ -68,14 +69,25 @@ describe("assertEquals", () => {
                 this.value = value;
             }
             public equals(other: A): boolean {
-                return this.equals === other.equals && this.value === other.value;
+                return this.value === other.value && this.equals === other.equals;
             }
         }
         class B extends A {
             public override equals(other: A): boolean {
-                return this.equals === other.equals && this.value === other.value;
+                return this.value === other.value && this.equals === other.equals;
             }
         }
         assert.throws(() => assertEquals(new A(20), new B(20)), new AssertionError("Expected <A({ value: 20 })> to equal <B({ value: 20 })>"));
+        assert.throws(() => assertEquals(new B(20), new A(20)), new AssertionError("Expected <B({ value: 20 })> to equal <A({ value: 20 })>"));
+    });
+    it("does set actual and expected properties on error", () => {
+        try {
+            assertEquals("bar", "foo");
+            throw new Error("Expected failure");
+        } catch (error) {
+            assertInstanceOf(error, AssertionError);
+            assert.equal(error.actual, "bar");
+            assert.equal(error.expected, "foo");
+        }
     });
 });

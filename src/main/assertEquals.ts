@@ -19,6 +19,6 @@ import { equals, toString } from "./utils.ts";
  */
 export function assertEquals<T, S>(actual: S, expected: T, reason?: string): asserts actual is T & S {
     if (!equals(actual, expected)) {
-        throw new AssertionError(`Expected <${toString(actual)}> to equal <${toString(expected)}>`, { reason });
+        throw new AssertionError(`Expected <${toString(actual)}> to equal <${toString(expected)}>`, { reason, actual, expected });
     }
 }

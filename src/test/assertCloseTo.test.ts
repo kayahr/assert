@@ -4,6 +4,7 @@ import { describe, it } from "node:test";
 import { assertCloseTo } from "../main/assertCloseTo.ts";
 import { AssertionError } from "../main/AssertionError.ts";
 import { toString } from "../main/utils.ts";
+import { assertInstanceOf } from "../main/assertInstanceOf.ts";
 
 class A {
     public value: number;
@@ -89,15 +90,27 @@ describe("assertCloseTo", () => {
                 this.value = value;
             }
             public equals(other: A): boolean {
-                return this.equals === other.equals && this.value === other.value;
+                return this.value === other.value && this.equals === other.equals;
             }
         }
         class B extends A {
             public override equals(other: A): boolean {
-                return this.equals === other.equals && this.value === other.value;
+                return this.value === other.value && this.equals === other.equals;
             }
         }
         assert.throws(() => assertCloseTo(new A(20), new B(20)),
             new AssertionError("Expected <A({ value: 20 })> to be close to <B({ value: 20 })> (precision: 2 decimals)"));
+        assert.throws(() => assertCloseTo(new B(20), new A(20)),
+            new AssertionError("Expected <B({ value: 20 })> to be close to <A({ value: 20 })> (precision: 2 decimals)"));
+    });
+    it("does set actual and expected properties on error", () => {
+        try {
+            assertCloseTo(1.123, 1.134);
+            throw new Error("Expected failure");
+        } catch (error) {
+            assertInstanceOf(error, AssertionError);
+            assert.equal(error.actual, 1.123);
+            assert.equal(error.expected, 1.134);
+        }
     });
 });

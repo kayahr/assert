@@ -16,6 +16,6 @@ import { toString } from "./utils.ts";
  */
 export function assertNotMatch(value: string, regexp: RegExp | string, reason?: string): void {
     if (value.match(regexp) != null) {
-        throw new AssertionError(`Expected <${toString(value)}> not to match <${toString(regexp)}>`, { reason });
+        throw new AssertionError(`Expected <${toString(value)}> not to match <${toString(regexp)}>`, { reason, actual: value, expected: regexp });
     }
 }

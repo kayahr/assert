@@ -30,6 +30,7 @@ import { equals, toString } from "./utils.ts";
  */
 export function assertCloseTo<Actual, Expected>(actual: Actual, expected: Expected, precision = 2, reason?: string): asserts actual is Actual & Expected {
     if (!equals(actual, expected, { precision })) {
-        throw new AssertionError(`Expected <${toString(actual)}> to be close to <${toString(expected)}> (precision: ${precision} decimals)`, { reason });
+        throw new AssertionError(`Expected <${toString(actual)}> to be close to <${toString(expected)}> (precision: ${precision} decimals)`,
+            { reason, actual, expected });
     }
 }

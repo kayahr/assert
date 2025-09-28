@@ -19,6 +19,6 @@ import { equals, toString } from "./utils.ts";
  */
 export function assertNotEquals<T, S>(actual: S, expected: T, reason?: string): asserts actual is Exclude<S, T> {
     if (equals(actual, expected)) {
-        throw new AssertionError(`Expected <${toString(actual)}> not to equal <${toString(expected)}>`, { reason });
+        throw new AssertionError(`Expected <${toString(actual)}> not to equal <${toString(expected)}>`, { reason, actual, expected });
     }
 }
