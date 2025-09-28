@@ -17,7 +17,7 @@ import { assertGreaterThan } from "../main/assertGreaterThan.ts";
 import { assertGreaterThanOrEqual } from "../main/assertGreaterThanOrEqual.ts";
 import { assertHasProperty } from "../main/assertHasProperty.ts";
 import { assertInstanceOf } from "../main/assertInstanceOf.ts";
-import { AssertionError } from "../main/AssertionError.ts";
+import { AssertionError, type AssertionErrorOptions } from "../main/AssertionError.ts";
 import { assertLessThan } from "../main/assertLessThan.ts";
 import { assertLessThanOrEqual } from "../main/assertLessThanOrEqual.ts";
 import { assertMatch } from "../main/assertMatch.ts";
@@ -36,16 +36,17 @@ import { assertNull } from "../main/assertNull.ts";
 import { assertNullish } from "../main/assertNullish.ts";
 import { assertSame } from "../main/assertSame.ts";
 import { assertThrow } from "../main/assertThrow.ts";
+import { assertThrowWithMessage } from "../main/assertThrowWithMessage.ts";
 import { assertTimeout } from "../main/assertTimeout.ts";
 import { assertTrue } from "../main/assertTrue.ts";
 import { assertTruthy } from "../main/assertTruthy.ts";
 import { assertUndefined } from "../main/assertUndefined.ts";
-import * as asserts from "../main/index.ts";
+import * as exports from "../main/index.ts";
 
 describe("index", () => {
     it("exports relevant types and functions and nothing more", () => {
         // Check exported classes and functions
-        assert.deepStrictEqual({ ...asserts }, {
+        assert.deepStrictEqual({ ...exports }, {
             AssertionError,
             assertAll,
             assertCloseTo,
@@ -77,9 +78,13 @@ describe("index", () => {
             assertSame,
             assertTimeout,
             assertThrow,
+            assertThrowWithMessage,
             assertTrue,
             assertTruthy,
             assertUndefined
         });
+
+        // Interfaces and types can only be checked by TypeScript
+        ((): AssertionErrorOptions => (({} as exports.AssertionErrorOptions)))();
     });
 });
