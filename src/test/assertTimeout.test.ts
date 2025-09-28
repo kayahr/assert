@@ -11,7 +11,7 @@ import { assertTimeout } from "../main/assertTimeout.ts";
 
 function sleepSync(ms: number): void {
     const start = performance.now();
-    while (performance.now() - ms < start) {
+    while (performance.now() - ms + 0.5 < start) {
         // Wasting time synchronously
     }
 }
