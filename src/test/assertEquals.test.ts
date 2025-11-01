@@ -95,4 +95,12 @@ describe("assertEquals", () => {
             assert.equal(error.expected, "foo");
         }
     });
+    it("does not throw when comparing object with missing key to object with undefined key", () => {
+        assert.doesNotThrow(() => assertEquals({ "a": 1 }, { "a": 1, "b": undefined }));
+        assert.doesNotThrow(() => assertEquals({ "a": 1, "b": undefined }, { "a": 1 }));
+    });
+    it("does throw when comparing object with null values against undefined values", () => {
+        assert.throws(() => assertEquals({ "a": 1, "b": null }, { "a": 1, "b": undefined }));
+        assert.throws(() => assertEquals({ "a": 1, "b": undefined }, { "a": 1, "b": null }));
+    });
 });

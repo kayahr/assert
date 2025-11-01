@@ -128,8 +128,8 @@ export function deepEquals<T, S>(a: T, b: T | S, options: EqualsOptions, seen = 
             }
 
             // Compare string properties
-            const propertyNamesOfA = Object.getOwnPropertyNames(a);
-            const propertyNamesOfB = Object.getOwnPropertyNames(b);
+            const propertyNamesOfA = Object.getOwnPropertyNames(a).filter(name => (a as Record<string, unknown>)[name] !== undefined);
+            const propertyNamesOfB = Object.getOwnPropertyNames(b).filter(name => (b as Record<string, unknown>)[name] !== undefined);
             if (propertyNamesOfA.length !== propertyNamesOfB.length) {
                 // Number of object properties do not match
                 return false;
