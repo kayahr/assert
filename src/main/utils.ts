@@ -175,3 +175,7 @@ export function deepEquals<T, S>(a: T, b: T | S, options: EqualsOptions, seen = 
 export function equals<T, S>(a: T, b: T | S, options: EqualsOptions = {}): a is T & S {
     return deepEquals(a, b, options);
 }
+
+export function sleep(ms = 0): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
