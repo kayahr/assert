@@ -10,6 +10,7 @@ export { assertDefined } from "./assertDefined.ts";
 export { assertEquals } from "./assertEquals.ts";
 export { assertFalse } from "./assertFalse.ts";
 export { assertFalsy } from "./assertFalsy.ts";
+export { type AssertGarbageCollectedOptions, assertGarbageCollected } from "./assertGarbageCollected.ts";
 export { assertGreaterThan } from "./assertGreaterThan.ts";
 export { assertGreaterThanOrEqual } from "./assertGreaterThanOrEqual.ts";
 export { assertHasProperty } from "./assertHasProperty.ts";

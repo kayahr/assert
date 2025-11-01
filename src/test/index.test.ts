@@ -13,6 +13,7 @@ import { assertDefined } from "../main/assertDefined.ts";
 import { assertEquals } from "../main/assertEquals.ts";
 import { assertFalse } from "../main/assertFalse.ts";
 import { assertFalsy } from "../main/assertFalsy.ts";
+import { type AssertGarbageCollectedOptions, assertGarbageCollected } from "../main/assertGarbageCollected.ts";
 import { assertGreaterThan } from "../main/assertGreaterThan.ts";
 import { assertGreaterThanOrEqual } from "../main/assertGreaterThanOrEqual.ts";
 import { assertHasProperty } from "../main/assertHasProperty.ts";
@@ -55,6 +56,7 @@ describe("index", () => {
             assertEquals,
             assertFalse,
             assertFalsy,
+            assertGarbageCollected,
             assertGreaterThan,
             assertGreaterThanOrEqual,
             assertHasProperty,
@@ -86,5 +88,6 @@ describe("index", () => {
 
         // Interfaces and types can only be checked by TypeScript
         ((): AssertionErrorOptions => (({} as exports.AssertionErrorOptions)))();
+        ((): AssertGarbageCollectedOptions => (({} as exports.AssertGarbageCollectedOptions)))();
     });
 });
