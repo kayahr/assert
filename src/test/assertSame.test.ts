@@ -12,6 +12,7 @@ import { assertSame } from "../main/assertSame.ts";
 describe("assertSame", () => {
     it("does throw when values are not same", () => {
         assert.throws(() => assertSame(1, 2), new AssertionError("Expected <1> to be <2>"));
+        assert.throws(() => assertSame(true, false), new AssertionError("Expected <true> to be <false>"));
         assert.throws(() => assertSame(null, undefined), new AssertionError("Expected <null> to be <undefined>"));
         assert.throws(() => assertSame([ 1, 2 ], [ 1, 2 ]), new AssertionError("Expected <[ 1, 2 ]> to be same instance"));
         assert.throws(() => assertSame({}, {}), new AssertionError("Expected <{}> to be same instance"));
@@ -20,6 +21,10 @@ describe("assertSame", () => {
         const a = [ 1, 2 ];
         assert.doesNotThrow(() => assertSame(1, 1));
         assert.doesNotThrow(() => assertSame(a, a));
+        assert.doesNotThrow(() => assertSame(null, null));
+        assert.doesNotThrow(() => assertSame(undefined, undefined));
+        assert.doesNotThrow(() => assertSame(NaN, NaN));
+        assert.doesNotThrow(() => assertSame(true, true));
     });
     it("does throw with additional reason", () => {
         assert.throws(() => assertSame(1, 2, "Reason"), new AssertionError("Reason: Expected <1> to be <2>"));

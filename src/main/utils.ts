@@ -75,7 +75,7 @@ export interface EqualsOptions {
 
 export function deepEquals<T, S>(a: T, b: T | S, options: EqualsOptions, seen = new WeakMap<object, object>()):
         a is T & S {
-    if (a === b || (a == null && b == null)) {
+    if (Object.is(a, b) || (a == null && b == null)) {
         // Values are the same (or both or null/undefined which is also considered equal)
         return true;
     }

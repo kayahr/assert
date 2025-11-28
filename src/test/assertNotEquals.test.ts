@@ -25,13 +25,13 @@ class B {
     }
 }
 
-const values = [ null, 0, 1, -1, Infinity, -Infinity, "", "a", true, false, new Date(), new A(1), new B(1), new A(2) ];
+const values = [ null, 0, 1, -1, Infinity, -Infinity, "", "a", true, false, new Date(), new A(1), new B(1), new A(2), NaN ];
 
 describe("assertNotEquals", () => {
     it("does not throw when value is not equal", () => {
         for (const value of values) {
             for (const otherValue of values) {
-                if (otherValue === value) {
+                if (Object.is(otherValue, value)) {
                     continue;
                 }
                 assert.doesNotThrow(() => assertNotEquals(value, otherValue));

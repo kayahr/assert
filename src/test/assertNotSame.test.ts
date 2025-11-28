@@ -21,6 +21,7 @@ describe("assertNotSame", () => {
         const a = [ 1, 2 ];
         assert.throws(() => assertNotSame(1, 1), new AssertionError("Expected <1> not to be <1>"));
         assert.throws(() => assertNotSame(a, a), new AssertionError("Expected <[ 1, 2 ]> not to be same instance"));
+        assert.throws(() => assertNotSame(NaN, NaN), new AssertionError("Expected <NaN> not to be <NaN>"));
     });
     it("does throw with additional reason", () => {
         assert.throws(() => assertNotSame(1, 1, "Reason"), new AssertionError("Reason: Expected <1> not to be <1>"));

@@ -25,7 +25,7 @@ class B {
     }
 }
 
-const values = [ null, 0, 1, -1, Infinity, -Infinity, "", "a", true, false, new Date(), new A(1), new B(1), new A(2) ];
+const values = [ null, 0, 1, -1, Infinity, -Infinity, "", "a", true, false, new Date(), new A(1), new B(1), new A(2), NaN ];
 
 describe("assertEquals", () => {
     it("does not throw when value is equal", () => {
@@ -38,7 +38,7 @@ describe("assertEquals", () => {
     it("does throw when values are not equal", () => {
         for (const value of values) {
             for (const otherValue of values) {
-                if (otherValue === value) {
+                if (Object.is(otherValue, value)) {
                     continue;
                 }
                 assert.throws(() => assertEquals(value, otherValue), new AssertionError(`Expected <${toString(value)}> to equal <${toString(otherValue)}>`));
