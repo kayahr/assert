@@ -122,7 +122,7 @@ export function deepEquals<T, S>(a: T, b: T | S, options: EqualsOptions, seen = 
                     // Arrays are equal
                     return true;
                 } else {
-                    // a is an array but b is not
+                    // `a` is an array but `b` is not
                     return false;
                 }
             }
@@ -158,7 +158,7 @@ export function deepEquals<T, S>(a: T, b: T | S, options: EqualsOptions, seen = 
             // Both values are objects considered equal
             return true;
         } else {
-            // a is an object but b is not
+            // `a` is an object but `b` is not
             return false;
         }
     }
