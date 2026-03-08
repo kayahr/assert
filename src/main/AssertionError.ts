@@ -25,11 +25,7 @@ export interface AssertionErrorOptions extends ErrorOptions {
  * @returns The concatenated message.
  */
 function buildMessage(message: string, reason?: string): string {
-    if (reason == null) {
-        return message;
-    } else {
-        return `${reason}: ${message}`;
-    }
+    return reason == null ? message : `${reason}: ${message}`;
 }
 
 /**

@@ -26,7 +26,7 @@ export function assertTimeout<T>(milliseconds: number, func: () => T | Promise<T
             const timer = setTimeout(() => {
                 reject(new AssertionError(`Execution timed out after ${milliseconds} ms`, { reason }));
             }, milliseconds);
-            return (async () => {
+            void (async () => {
                 const value = await result;
                 clearTimeout(timer);
                 resolve(value);

@@ -31,9 +31,9 @@ export interface AssertGarbageCollectedOptions {
  * @param options    - Additional assert options.
  * @throws {@link AssertionError} when object has not been garbage collected.
  */
-export async function assertGarbageCollected(ref: WeakRef<object>, destructor: () => void, { timeout = 5000, reason }: AssertGarbageCollectedOptions = {}):
+export async function assertGarbageCollected(ref: WeakRef<object>, destructor: () => void | Promise<void>, { timeout = 5000, reason }: AssertGarbageCollectedOptions = {}):
         Promise<void> {
-    destructor();
+    await destructor();
     let pass = false;
     const end = Date.now() + timeout;
     while (!pass && Date.now() < end) {

@@ -16,10 +16,8 @@ import { toString } from "./utils.ts";
  */
 export function assertSame<T>(actual: unknown, expected: T, reason?: string): asserts actual is T {
     if (!Object.is(actual, expected)) {
-        if (actual instanceof Object) {
-            throw new AssertionError(`Expected <${toString(actual)}> to be same instance`, { reason });
-        } else {
-            throw new AssertionError(`Expected <${toString(actual)}> to be <${toString(expected)}>`, { reason });
-        }
+        throw actual instanceof Object
+            ? new AssertionError(`Expected <${toString(actual)}> to be same instance`, { reason })
+            : new AssertionError(`Expected <${toString(actual)}> to be <${toString(expected)}>`, { reason });
     }
 }

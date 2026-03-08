@@ -14,12 +14,10 @@ import { toString } from "./utils.ts";
  * @param reason   - Optional reason added to exception message when assertion fails.
  * @throws {@link AssertionError} when actual value is the same as the expected value.
  */
-export function assertNotSame<T>(actual: T, expected: unknown, reason?: string): void {
+export function assertNotSame(actual: unknown, expected: unknown, reason?: string): void {
     if (Object.is(actual, expected)) {
-        if (actual instanceof Object) {
-            throw new AssertionError(`Expected <${toString(actual)}> not to be same instance`, { reason });
-        } else {
-            throw new AssertionError(`Expected <${toString(actual)}> not to be <${toString(expected)}>`, { reason });
-        }
+        throw actual instanceof Object
+            ? new AssertionError(`Expected <${toString(actual)}> not to be same instance`, { reason })
+            : new AssertionError(`Expected <${toString(actual)}> not to be <${toString(expected)}>`, { reason });
     }
 }
