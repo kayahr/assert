@@ -46,7 +46,7 @@ export class AssertionError extends Error {
      */
     public constructor(message: string, { reason, ...options }: AssertionErrorOptions = {}) {
         super(buildMessage(message, reason), { cause: options.cause });
-        this.name = this.constructor.name;
+        this.name = "AssertionError";
         Object.setPrototypeOf(this, this.constructor.prototype as Function);
         if (Object.hasOwn(options, "actual")) {
             this.actual = options.actual;
