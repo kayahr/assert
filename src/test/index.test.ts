@@ -87,7 +87,7 @@ describe("index", () => {
         });
 
         // Interfaces and types can only be checked by TypeScript
-        ((): AssertionErrorOptions => (({} as exports.AssertionErrorOptions)))();
-        ((): AssertGarbageCollectedOptions => (({} as exports.AssertGarbageCollectedOptions)))();
+        ((): AssertionErrorOptions => ((0 as exports.AssertionErrorOptions)))();
+        ((): AssertGarbageCollectedOptions => ((0 as exports.AssertGarbageCollectedOptions)))();
     });
 });
