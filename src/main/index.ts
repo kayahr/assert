@@ -4,6 +4,7 @@
  */
 
 export { assertAll } from "./assertAll.ts";
+export { assertAssignable } from "./assertAssignable.ts";
 export { assertCloseTo } from "./assertCloseTo.ts";
 export { assertContain } from "./assertContain.ts";
 export { assertDefined } from "./assertDefined.ts";

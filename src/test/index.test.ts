@@ -7,6 +7,7 @@ import assert from "node:assert";
 import { describe, it } from "node:test";
 
 import { assertAll } from "../main/assertAll.ts";
+import { assertAssignable } from "../main/assertAssignable.ts";
 import { assertCloseTo } from "../main/assertCloseTo.ts";
 import { assertContain } from "../main/assertContain.ts";
 import { assertDefined } from "../main/assertDefined.ts";
@@ -50,6 +51,7 @@ describe("index", () => {
         assert.deepStrictEqual({ ...exports }, {
             AssertionError,
             assertAll,
+            assertAssignable,
             assertCloseTo,
             assertContain,
             assertDefined,
@@ -87,7 +89,7 @@ describe("index", () => {
         });
 
         // Interfaces and types can only be checked by TypeScript
-        ((): AssertionErrorOptions => ((0 as exports.AssertionErrorOptions)))();
-        ((): AssertGarbageCollectedOptions => ((0 as exports.AssertGarbageCollectedOptions)))();
+        assertAssignable<AssertionErrorOptions, exports.AssertionErrorOptions>();
+        assertAssignable<AssertGarbageCollectedOptions, exports.AssertGarbageCollectedOptions>();
     });
 });
